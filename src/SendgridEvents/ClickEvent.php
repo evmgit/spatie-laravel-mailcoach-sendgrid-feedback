@@ -20,13 +20,7 @@ class ClickEvent extends SendgridEvent
             return;
         }
 
-        $email = Arr::get($this->payload, 'email');
-
-        if ($send->subscriber && $email !== $send->subscriber->email) {
-            return;
-        }
-
-        if ($send->transactionalMail && $email !== $send->transactionalMail->to[0]['email']) {
+        if (Arr::get($this->payload, 'email') !== $send->subscriber->email) {
             return;
         }
 
